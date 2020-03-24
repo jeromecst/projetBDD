@@ -71,9 +71,9 @@
 
 	HABITANT[Num\_AP] $\subseteq$ APPART[Num\_AP] \\
 
-	SALLE[Id\_Bât\_Local] $\subseteq$ LOCAL[Id\_Bât\_Local] \\
+	SALLE[Id\_Bat\_Local] $\subseteq$ LOCAL[Id\_Bat\_Local] \\
 
-	APPART[Id\_Bât\_Im] $\subseteq$ IMMEUBLE[Id\_Bât\_Im] \\
+	APPART[Id\_Bat\_Im] $\subseteq$ IMMEUBLE[Id\_Bat\_Im] \\
 
 	R\_PARTICIPE[N\_SS]  $\subseteq$ HABITANT[N\_SS] \\
 
@@ -113,7 +113,7 @@
             \> Créneau DATETIME NOT NULL REFERENCES Horaire(Créneau) ,\\
             \> Étage INTEGER NOT NULL REFERENCES Salle(Étage) ,\\
 			\> Num$\_$S INTEGER NOT NULL REFERENCES Salle(Num$\_$S),\\
-			\> Id$\_$Bât$\_$Local INTEGER NOT NULL REFERENCES Local(Id$\_$Bât$\_$Local),\\
+			\> Id$\_$Bat$\_$Local INTEGER NOT NULL REFERENCES Local(Id$\_$Bat$\_$Local),\\
 			\> N$\_$SS$\_$Anime  INTEGER NOT NULL REFERENCES Habitant(N$\_$SS),\\
 			\> Niveau INTEGER ,\\
 			\> Min INTEGER,\\
