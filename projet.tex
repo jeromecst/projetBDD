@@ -91,6 +91,9 @@
 
 	R\_LIEU\_POSSIBLE[Id\_Bat\_Local] $\subseteq$ LOCAL[Id\_Bat\_Local] \\
 
+	\textbf{Justifications: }
+	On fusionne les entités ATELIER avec les associations R\_THÈME, R\_ANIME et R\_A\_LIEU car la cardinalité minimum de l'entité ATELIER pour ces associations est 1. On ajoute les aattributs nécessaires (les clés de ACTIVITÉ, HABITANT, HORAIRES
+	On fusionne l'entité ACTIVITÉ avec l'associations R\_DISCIPLINE car la cardinalité minimum de l'entité ATELIER pour ces associations est 1.
 	\newpage
     \section{EN SQL}
 
@@ -118,8 +121,9 @@
 		\end{tabbing}
 
 		\begin{tabbing}
-			CR\=EATE TABLE Activité (\\
-			\> Id\_Bat\_Im INTEGER PRIMARY KEY,\\
+			CR\=EATE TABLE Habitant (\\
+			\> N\_SS INTEGER PRIMARY KEY,\\
+			\> Id\_Bat\_Im INTEGER NOT NULL,\\
 			\> Num\_AP INTEGER NOT NULL,\\
 			\> Prén\_Hab CHAR(30),\\
 			\> Nom\_Hab CHAR(30),\\
@@ -153,7 +157,7 @@
 		\begin{tabbing}
 			CR\=EATE TABLE Immeuble (\\
 			\> Id\_Bat\_Im INTEGER PRIMARY KEY,\\
-			\> Nom\_Bat CHAR(30) ,\\
+			\> Nom\_Bat CHAR(30),\\
 			\> Nom\_Rue CHAR(30),\\
 			\> Rue CHAR(40),\\
 			\> CP INTEGER,\\
