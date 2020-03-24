@@ -58,7 +58,7 @@
 
 	R\_HABITE (\underline{N\_SS}, Id\_Bât, NUM\_AP)
 
-	R\_CAPACITÉ (\underline{Id\_Bât}, Étage, Num\_S, Num\_DA, lieu\_possible)
+	R\_CAPACITÉ (\underline{Id\_Bât}, Étage, Num\_S, Num\_DA, Lieu\_possible)
 
 	R\_DANS\_LOCAL (\underline{Id\_Bât}, Étage, Num\_S)
 
@@ -82,7 +82,7 @@
 
 	R\_PARTICIPE[N\_SS] $\subseteq$ HABITANT[N\_SS]
 
-	R\_PARAINE[N\_SS1, N\_SS2] $\subseteq$ HABITANT[N\_SS]
+	R\_PARRAINE[N\_SS1, N\_SS2] $\subseteq$ HABITANT[N\_SS]
 
 	R\_DISCIPLINE[Id\_Act] $\subseteq$ ACTIVITÉ[Id\_Act]
 
@@ -120,7 +120,7 @@
 
 	R\_À\_LIEU[Jour] $\subseteq$ HORAIRE[Jour]
 
-	R\_À\_LIEU[Creneau] $\subseteq$ HORAIRE[Creneau]
+	R\_À\_LIEU[Créneau] $\subseteq$ HORAIRE[Créneau]
 
 	ATELIER[Num\_AT] $\subseteq$ R\_THEME[Num\_AT]
 
@@ -224,9 +224,9 @@
 			CR\=EATE TABLE Atelier (\\
 			\> Num$\_$AT INTEGER PRIMARY KEY,\\
 			\> Id$\_$Act INTEGER NOT NULL REFERENCES Activité(Id\_Act),\\
-			\> Jour DATE NOT NULL REFERENCES Horaire(Jour) ,\\
-			\> Créneau DATETIME NOT NULL REFERENCES Horaire(Créneau) ,\\
-			\> Étage INTEGER NOT NULL REFERENCES Salle(Étage) ,\\
+			\> Jour DATE NOT NULL REFERENCES Horaire(Jour),\\
+			\> Créneau DATETIME NOT NULL REFERENCES Horaire(Créneau),\\
+			\> Étage INTEGER NOT NULL REFERENCES Salle(Étage),\\
 			\> Num$\_$S INTEGER NOT NULL REFERENCES Salle(Num$\_$S),\\
 			\> Id$\_$Bât$\_$Local INTEGER NOT NULL REFERENCES Local(Id$\_$Bât$\_$Local),\\
 			\> N$\_$SS$\_$Anime  INTEGER NOT NULL REFERENCES Habitant(N$\_$SS),\\
