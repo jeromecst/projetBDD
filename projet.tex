@@ -219,8 +219,8 @@
 
 	\end{itemize}
 	\newpage
-	\section{EN SQL}
-	\textbf{Justifications SQL: }
+	\section*{EN SQL}
+	\textbf{Justifications SQL\@: }
 	\begin{itemize}
 		\item On essaye de respecter l'unicité des clés primaires de chaque entité. Nonobstant, on a conservé les clés primaires composées des entités HORAIRE et SALLE qui nous permettent de les reconnaître encore. 
 		\item On utilise des clés externes (FOREIGN KEY REFERENCES) pour les associations d'héritage de SALLE et APPART qui héritent leur sous-entités Id\_Bât\_Local et Id\_Bât\_Im de LOCAL et IMMEUBLE\@. On représente également les contraintes d'inclusion par des REFERENCES aux attributs des entités associées.
@@ -239,7 +239,7 @@
 			\> Num$\_$S INTEGER NOT NULL REFERENCES Salle(Num$\_$S),\\
 			\> Id$\_$Bât$\_$Local INTEGER NOT NULL REFERENCES Local(Id$\_$Bât$\_$Local),\\
 			\> N$\_$SS$\_$Anime  INTEGER NOT NULL REFERENCES Habitant(N$\_$SS),\\
-			\> Niveau INTEGER ,\\
+			\> Niveau INTEGER,\\
 			\> Min INTEGER,\\
 			\> Max INTEGER\\);
 		\end{tabbing}
