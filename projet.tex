@@ -97,7 +97,7 @@
 		\begin{tabbing}
 			CR\=EATE TABLE Atelier (\\
 			\> Num$\_$AT INTEGER PRIMARY KEY,\\
-			\> Id$\_$Act INTEGER NOT NULL,\\
+			\> Id$\_$Act INTEGER NOT NULL REFERENCES Activité(Id\_Act),\\
 			\> Jour DATE NOT NULL,\\
 			\> Créneau DATETIME NOT NULL,\\
 			\> Étage INTEGER NOT NULL,\\
