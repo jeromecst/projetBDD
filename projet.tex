@@ -99,15 +99,14 @@
 
 		\begin{tabbing}
 			CR\=EATE TABLE Atelier (\\
-			\> Num$\_$AT INTEGER PRIMARY KEY,\\
 			\> Id$\_$Act INTEGER NOT NULL REFERENCES Activité(Id\_Act),\\
-			\> Jour DATE NOT NULL,\\
-			\> Créneau DATETIME NOT NULL,\\
-			\> Étage INTEGER NOT NULL,\\
-			\> Num$\_$S INTEGER NOT NULL,\\
-			\> Id$\_$Bât$\_$Local INTEGER NOT NULL,\\
-			\> N$\_$SS$\_$Anime  INTEGER NOT NULL,\\
-			\> Niveau INTEGER,\\
+            \> Jour DATE NOT NULL REFERENCES Horaire(Jour) ,\\
+            \> Créneau DATETIME NOT NULL REFERENCES Horaire(Créneau) ,\\
+            \> Étage INTEGER NOT NULL REFERENCES Salle(Étage) ,\\
+			\> Num$\_$S INTEGER NOT NULL REFERENCES Salle(Num$\_$S),\\
+			\> Id$\_$Bât$\_$Local INTEGER NOT NULL REFERENCES Local(Id$\_$Bât$\_$Local),\\
+			\> N$\_$SS$\_$Anime  INTEGER NOT NULL REFERENCES Habitant(N$\_$SS),\\
+			\> Niveau INTEGER ,\\
 			\> Min INTEGER,\\
 			\> Max INTEGER\\);
 		\end{tabbing}
@@ -115,7 +114,7 @@
 		\begin{tabbing}
 			CR\=EATE TABLE Activité (\\
 			\> Id\_Act INTEGER PRIMARY KEY,\\
-			\> Num\_DA INTEGER NO NULL,\\
+			\> Num$\_$DA INTEGER NO NULL REFERENCES Discipline$\_$Artistique(Num$\_$DA),\\
 			\> Nom\_Act CHAR(30),\\
 			\> Pratique CHAR(10),\\);
 		\end{tabbing}
@@ -123,8 +122,8 @@
 		\begin{tabbing}
 			CR\=EATE TABLE Habitant (\\
 			\> N\_SS INTEGER PRIMARY KEY,\\
-			\> Id\_Bat\_Im INTEGER NOT NULL,\\
-			\> Num\_AP INTEGER NOT NULL,\\
+			\> Id\_Bat\_Im INTEGER NOT NULL REFERENCES Immeuble(Id\_Bat\_Im),\\
+			\> Num\_AP INTEGER NOT NULL REFERENCES Appart(Num\_AP),\\
 			\> Prén\_Hab CHAR(30),\\
 			\> Nom\_Hab CHAR(30),\\
 			\> Genre CHAR(1),\\
@@ -135,14 +134,14 @@
 			CR\=EATE TABLE Salle (\\
 			\> Étage INTEGER PRIMARY KEY,\\
 			\> Num\_S INTEGER NOT NULL,\\
-			\> Id\_Bat\_Local INTEGER NOT NULL,\\);
+			\> Id\_Bat\_Local INTEGER NOT NULL REFERENCES Local(Id\_Bat\_Local),\\);
 		\end{tabbing}
 
 		\begin{tabbing}
 			CR\=EATE TABLE Appart (\\
-			\> Num\_AP INTEGER	 PRIMARY KEY,\\
+			\> Num\_AP INTEGER PRIMARY KEY,\\
 			\> Pièces INTEGER NOT NULL,\\
-			\> Id\_Bat\_Im INTEGER NOT NULL,\\);
+			\> Id\_Bat\_Im INTEGER NOT NULL REFERENCES Immeuble(Id\_Bat\_Im),\\);
 		\end{tabbing}
                                                    
 		\begin{tabbing}
@@ -150,18 +149,20 @@
 			\> Id\_Bat\_Local INTEGER PRIMARY KEY,\\
 			\> Nom\_Bat CHAR(30),\\
 			\> Nom\_Rue CHAR(30),\\
-			\> Rue CHAR(40),\\
+			\> Rue INTEGER,\\
 			\> CP INTEGER,\\
-			\> Type CHAR(40),\\);
+			\> Type CHAR(40),\\
+			\> UNIQUE(Nom\_Bat, Nom\_Rue, Rue, CP));
 		\end{tabbing}
 		\begin{tabbing}
 			CR\=EATE TABLE Immeuble (\\
 			\> Id\_Bat\_Im INTEGER PRIMARY KEY,\\
 			\> Nom\_Bat CHAR(30),\\
 			\> Nom\_Rue CHAR(30),\\
-			\> Rue CHAR(40),\\
+			\> Rue INTEGER,\\
 			\> CP INTEGER,\\
-			\> Année YEAR\\);
+			\> Année YEAR\\
+			\> UNIQUE(Nom\_Bat, Nom\_Rue, Rue, CP));
 		\end{tabbing}
 
 		\begin{tabbing}
@@ -181,7 +182,7 @@
 		\end{tabbing}
 		\begin{tabbing}
 			CR\=EATE TABLE R\_Parraine (\\
-			\> N\_SS\_Parrain INTEGER PRIMARY KEY,\\
+			\> N\_SS\_Parrain INTEGER PRIMARY KEY ,\\
 			\> N\_SS\_Filleul INTEGER NOT NULL,\\);
 		\end{tabbing}
 		\begin{tabbing}
