@@ -117,7 +117,7 @@
 			\> N$\_$SS$\_$Anime  INTEGER NOT NULL REFERENCES Habitant(N$\_$SS),\\
 			\> Niveau INTEGER ,\\
 			\> Min INTEGER,\\
-			\> Max INTEGER\\);
+			\> Max INTEGER,\\);
 		\end{tabbing}
 
 		\begin{tabbing}
@@ -125,7 +125,7 @@
 			\> Id\_Act INTEGER PRIMARY KEY,\\
 			\> Num$\_$DA INTEGER NOT NULL REFERENCES Discipline$\_$Artistique(Num$\_$DA),\\
 			\> Nom\_Act CHAR(30),\\
-			\> Pratique CHAR(10)\\);
+			\> Pratique CHAR(10),\\);
 		\end{tabbing}
 
 		\begin{tabbing}
@@ -162,7 +162,7 @@
 			\> Rue INTEGER,\\
 			\> CP INTEGER,\\
 			\> Type CHAR(40),\\
-			\> UNIQUE(Nom\_Bât, Nom\_Rue, Rue, CP)\\);
+			\> UNIQUE(Nom\_Bât, Nom\_Rue, Rue, CP),\\);
 		\end{tabbing}
 		\begin{tabbing}
 			CR\=EATE TABLE Immeuble (\\
@@ -194,7 +194,7 @@
 		\begin{tabbing}
 			CR\=EATE TABLE R\_Parraine (\\
 			\> FOREIGN KEY N\_SS\_Parrain INTEGER REFERENCES Habitant(N\_SS),\\
-			\> N\_SS\_Filleul INTEGER NOT NULL REFERENCES Habitant(N\_SS)\\);
+			\> N\_SS\_Filleul INTEGER NOT NULL REFERENCES Habitant(N\_SS),\\);
 		\end{tabbing}
 		\begin{tabbing}
 			CR\=EATE TABLE R\_Lieu\_Possible (\\
@@ -202,7 +202,7 @@
 			\> Num\_DA INTEGER NOT NULL REFERENCES Discipline\_Artistique(Num\_DA),\\
 			\> Étage INTEGER NOT NULL REFERENCES Salle(Étage),\\
 			\> Num\_S INTEGER NOT NULL REFERENCES Salle(Num\_S),\\
-			\> Id\_Bât\_Local INTEGER NOT NULL REFERENCES Local(Id\_Bât\_Local)\\);
+			\> Id\_Bât\_Local INTEGER NOT NULL REFERENCES Local(Id\_Bât\_Local),\\);
 		\end{tabbing}
 
 
