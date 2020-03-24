@@ -86,7 +86,7 @@
 
 	R\_DISCIPLINE[Id\_Act] $\subseteq$ ACTIVITÉ[Id\_Act]
 
-	R\_DISCIPLINE[NumDa]$\subseteq$ DISC.ART.[NumDA]
+	R\_DISCIPLINE[Num\_DA]$\subseteq$ DISC.ART.[Num\_DA]
 
 	R\_HABITE[N\_SS] $\subseteq$ HABITANT[N\_SS]
 
@@ -96,11 +96,11 @@
 
 	R\_LIEU\_POSSIBLE[Id\_Bât] $\subseteq$ BÂTIMENT[Id\_Bât]
 
-	R\_LIEU\_POSSIBLE[Etage] $\subseteq$ SALLE[Etage]
+	R\_LIEU\_POSSIBLE[Étage] $\subseteq$ SALLE[Étage]
 
 	R\_LIEU\_POSSIBLE[Num\_S] $\subseteq$ SALLE[Num\_S]
 
-	R\_LIEU\_POSSIBLE[NumDA] $\subseteq$ DISC.ART.[NumDA]
+	R\_LIEU\_POSSIBLE[Num\_DA] $\subseteq$ DISC.ART.[Num\_DA]
 
 	R\_DANS\_LOCAL[Id\_Bât] $\subseteq$ BÂTIMENT[Id\_Bât]
 
@@ -114,7 +114,7 @@
 
 	R\_À\_LIEU[Num\_At] $\subseteq$ ATELIER[Num\_At]
 
-	R\_À\_LIEU[Etage] $\subseteq$ SALLE[Etage]
+	R\_À\_LIEU[Étage] $\subseteq$ SALLE[Étage]
 
 	R\_À\_LIEU[Num\_S] $\subseteq$ SALLE[Num\_S]
 
@@ -132,13 +132,13 @@
 
 	HABITANT[N\_SS] $\subseteq$ R\_HABITE[N\_SS]
 
-	SALLE[Etage, Num\_S] $\subseteq$ R\_DANS\_LOCAL[Etage, Num\_S]
+	SALLE[Étage, Num\_S] $\subseteq$ R\_DANS\_LOCAL[Étage, Num\_S]
 
 	APPART[Num\_Ap] $\subseteq$ R\_DANS\_2[Num\_Ap]
 
-	LOCAL[Id\_Bat] $\subseteq$ BÂTIMENT[Id\_Bat]
+	LOCAL[Id\_Bât] $\subseteq$ BÂTIMENT[Id\_Bât]
 
-	APPART[Id\_Bat] $\subseteq$ BÂTIMENT[Id\_Bat]
+	APPART[Id\_Bât] $\subseteq$ BÂTIMENT[Id\_Bât]
 
     \section*{Étape 3: Fusion}
 
@@ -186,9 +186,9 @@
 
 	HABITANT[Num\_AP] $\subseteq$ APPART[Num\_AP] \\
 
-	SALLE[Id\_Bat\_Local] $\subseteq$ LOCAL[Id\_Bat\_Local] \\
+	SALLE[Id\_Bât\_Local] $\subseteq$ LOCAL[Id\_Bât\_Local] \\
 
-	APPART[Id\_Bat\_Im] $\subseteq$ IMMEUBLE[Id\_Bat\_Im] \\
+	APPART[Id\_Bât\_Im] $\subseteq$ IMMEUBLE[Id\_Bât\_Im] \\
 
 	R\_PARTICIPE[N\_SS]  $\subseteq$ HABITANT[N\_SS] \\
 
