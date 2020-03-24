@@ -209,14 +209,13 @@
 	\textbf{Justifications: }
 	\begin{itemize}
 		\item On fusionne les entités ATELIER avec les associations R\_THÈME, R\_ANIME et R\_À\_LIEU car la cardinalité minimum de l'entité ATELIER pour ces associations est 1. On ajoute les attributs nécessaires (les clés de ACTIVITÉ, HABITANT, HORAIRES et SALLE).
-		\item	On fusionne l'entité ACTIVITÉ avec l'association R\_DISCIPLINE car la cardinalité minimum de l'entité ATELIER pour cette association est 1. On ajoute les attributs nécessaires (les clés de DISC.\_ ART.).
-		\item	On fusionne l'entité HABITANT avec l'association R\_HABITE car la cardinalité minimum de l'entité HABITANT pour cette association est 1. On ajoute les attributs nécessaires (les clés de APPART).
-		\item   On fusionne les IS\_A, c'est-à-dire LOCAL et BÂTIMENT deviennent LOCAL avec les attributs de BÂTIMENT et de LOCAL\@. IMMEUBLE et BÂTIMENT avec les attributs de BÂTIMENT et de immeuble.	
+		\item On fusionne l'entité ACTIVITÉ avec l'association R\_DISCIPLINE car la cardinalité minimum de l'entité ATELIER pour cette association est 1. On ajoute les attributs nécessaires (les clés de DISC.\_ ART.).
+		\item On fusionne l'entité HABITANT avec l'association R\_HABITE car la cardinalité minimum de l'entité HABITANT pour cette association est 1. On ajoute les attributs nécessaires (les clés de APPART).
+		\item  On fusionne les IS\_A, c'est-à-dire LOCAL et BÂTIMENT deviennent LOCAL avec les attributs de BÂTIMENT et de LOCAL\@. IMMEUBLE et BÂTIMENT avec les attributs de BÂTIMENT et de immeuble.	
 
-		\item	On fusionne l'entité SALLE avec l'association R\_DANS\_LOCAL car la cardinalité minimum de l'entité SALLE pour cette association est 1. On ajoute les attributs nécessaires (les clés de LOCAL et donc de BÂTIMENT car c'est une entité faible). 
-		\item	On fusionne l'entité APPART avec l'association R\_DANS\_2 car la cardinalité minimum de l'entité APPART pour cette association est 1. On ajoute les attributs nécessaires (les clés de IMMEUBLE et donc de BÂTIMENT car c'est une entité faible).
-		\item   Les associations R\_PARTICIPE, R\_LIEU\_POSSIBLE et R\_PARRAINE ne changent pas car les cardinalités minimales sont 0, pour les entités associées.
-		\item 
+		\item On fusionne l'entité SALLE avec l'association R\_DANS\_LOCAL car la cardinalité minimum de l'entité SALLE pour cette association est 1. On ajoute les attributs nécessaires (les clés de LOCAL et donc de BÂTIMENT car c'est une entité faible). 
+		\item On fusionne l'entité APPART avec l'association R\_DANS\_2 car la cardinalité minimum de l'entité APPART pour cette association est 1. On ajoute les attributs nécessaires (les clés de IMMEUBLE et donc de BÂTIMENT car c'est une entité faible).
+		\item Les associations R\_PARTICIPE, R\_LIEU\_POSSIBLE et R\_PARRAINE ne changent pas car les cardinalités minimales sont 0, pour les entités associées.
 
 	\end{itemize}
 	\newpage
