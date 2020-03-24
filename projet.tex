@@ -222,12 +222,10 @@
 	\section{EN SQL}
 	\textbf{Justifications SQL: }
 	\begin{itemize}
-		\item On essaye de respecter l'unicité des clés primaires de chaque entité. Nonobstant, on a conservé les clés primaires composées des entités Horaire et Salle qui nous permettent de les reconnaître encore. 
-		\item On utilise des clés externes (FOREIGN KEY) pour les associations d'héritage de SALLE et APPART qui héritent de LOCAL et IMMEUBLE leur sous-entités id\_bât\_Local et id\_bât\_Im.
-		\item Lors des fusions entités/associations, on garde les clés les plus petites et qui nous permettent de reconnaître la nouvelle entité. C'est ainsi que les attributs qui étaient désignés comme des clés primaires avant fusion,
-		deviennent des NOT NULL. On garde leur propiété d'existance absolue.
-		\item On représente les contraintes d'inclusion  par des REFERENCES aux attributs des entités associées.
-		\item On choisie d'ajouter un UNIQUE pour les attributs de Local et Immeuble. Ils représentent des éléments qui peuvent jouer le rôle des clés si on les met ensemble. Un immeuble et un local sont bien reconnaissables par leur unique adresse. UNIQUE est comme une clé sécondaire mais pas nécessaire. 
+		\item On essaye de respecter l'unicité des clés primaires de chaque entité. Nonobstant, on a conservé les clés primaires composées des entités HORAIRE et SALLE qui nous permettent de les reconnaître encore. 
+		\item On utilise des clés externes (FOREIGN KEY REFERENCES) pour les associations d'héritage de SALLE et APPART qui héritent leur sous-entités Id\_Bât\_Local et Id\_Bât\_Im de LOCAL et IMMEUBLE\@. On représente également les contraintes d'inclusion par des REFERENCES aux attributs des entités associées.
+		\item Lors des fusions entités/associations, on garde les clés avec le moins d'attributs possibles et celles qui nous permettent de reconnaître la nouvelle entité. C'est ainsi que les attributs qui étaient désignés comme des clés primaires avant fusion, deviennent des NOT NULL\@. Cela permet de conserver l'existence des entités même après la fusion entre des entités et des associations.
+		\item On choisie d'ajouter UNIQUE pour les attributs de LOCAL et IMMEUBLE\@. Ils représentent des éléments qui peuvent jouer le rôle des clés si on les met ensemble. Un IMMEUBLE et un LOCAL sont bien reconnaissables par leur unique adresse. UNIQUE est comme une clé sécondaire mais pas nécessaire. En effet, pour chaque LOCAL/IMMEUBLE, il y aura un unique quadruplet (Nom\_Bât, Nom\_Rue, Rue, CP), ce qui justifie l'utilisation de la contrainte UNIQUE\@.
 		 
 	\end{itemize}
 
