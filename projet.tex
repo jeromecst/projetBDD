@@ -30,7 +30,7 @@
 
 	HORAIRE (\underline{Jour}, \underline{Créneau})
 
-	ACTIVITE (\underline{id\_Act}, Nom\_Act, Pratique) 
+	ACTIVITÉ (\underline{id\_Act}, Nom\_Act, Pratique) 
 
 	DISC.ART\. (\underline{Num\_DA}, Nom\_DA)
 
@@ -90,11 +90,11 @@
 
 	R\_HABITE[N\_SS] $\subseteq$ HABITANT[N\_SS]
 
-	R\_HABITE[Id\_Bat] $\subseteq$ BATIMENT[Id\_Bat]
+	R\_HABITE[Id\_Bât] $\subseteq$ BÂTIMENT[Id\_Bât]
 
 	R\_HABITE[Num\_Ap] $\subseteq$ APPARTEMENT[Num\_Ap]
 
-	R\_LIEU\_POSSIBLE[Id\_Bat] $\subseteq$ BATIMENT[Id\_Bat]
+	R\_LIEU\_POSSIBLE[Id\_Bât] $\subseteq$ BÂTIMENT[Id\_Bât]
 
 	R\_LIEU\_POSSIBLE[Etage] $\subseteq$ SALLE[Etage]
 
@@ -102,33 +102,33 @@
 
 	R\_LIEU\_POSSIBLE[NumDA] $\subseteq$ DISC.ART.[NumDA]
 
-	R\_DANS\_LOCAL[Id\_Bat] $\subseteq$ BATIMENT[Id\_Bat]
+	R\_DANS\_LOCAL[Id\_Bât] $\subseteq$ BÂTIMENT[Id\_Bât]
 
-	R\_DANS\_LOCAL[Etage] $\subseteq$ SALLE[Etage]
+	R\_DANS\_LOCAL[Étage] $\subseteq$ SALLE[Étage]
 
 	R\_DANS\_LOCAL[Num\_S] $\subseteq$ SALLE[Num\_S]
 
-	R\_DANS\_2[Id\_Bat] $\subseteq$ BATIMENT[Id\_Bat]
+	R\_DANS\_2[Id\_Bât] $\subseteq$ BÂTIMENT[Id\_Bât]
 
 	R\_DANS\_2[Num\_Ap] $\subseteq$ APPART[Num\_Ap]
 
-	R\_A\_LIEU[Num\_At] $\subseteq$ ATELIER[Num\_At]
+	R\_À\_LIEU[Num\_At] $\subseteq$ ATELIER[Num\_At]
 
-	R\_A\_LIEU[Etage] $\subseteq$ SALLE[Etage]
+	R\_À\_LIEU[Etage] $\subseteq$ SALLE[Etage]
 
-	R\_A\_LIEU[Num\_S] $\subseteq$ SALLE[Num\_S]
+	R\_À\_LIEU[Num\_S] $\subseteq$ SALLE[Num\_S]
 
-	R\_A\_LIEU[Jour] $\subseteq$ HORAIRE[Jour]
+	R\_À\_LIEU[Jour] $\subseteq$ HORAIRE[Jour]
 
-	R\_A\_LIEU[Creneau] $\subseteq$ HORAIRE[Creneau]
+	R\_À\_LIEU[Creneau] $\subseteq$ HORAIRE[Creneau]
 
 	ATELIER[Num\_AT] $\subseteq$ R\_THEME[Num\_AT]
 
 	ATELIER[Num\_AT] $\subseteq$ R\_ANIME[Num\_AT]
 
-	ATELIER[Num\_AT] $\subseteq$ R\_A\_LIEU[Num\_AT]
+	ATELIER[Num\_AT] $\subseteq$ R\_À\_LIEU[Num\_AT]
 
-	ACTIVITE[Id\_Act] $\subseteq$ DISCIPLINE[Id\_Act]
+	ACTIVITÉ[Id\_Act] $\subseteq$ DISCIPLINE[Id\_Act]
 
 	HABITANT[N\_SS] $\subseteq$ R\_HABITE[N\_SS]
 
@@ -136,9 +136,9 @@
 
 	APPART[Num\_Ap] $\subseteq$ R\_DANS\_2[Num\_Ap]
 
-	LOCAL[Id\_Bat] $\subseteq$ BATIMENT[Id\_Bat]
+	LOCAL[Id\_Bat] $\subseteq$ BÂTIMENT[Id\_Bat]
 
-	APPART[Id\_Bat] $\subseteq$ BATIMENT[Id\_Bat]
+	APPART[Id\_Bat] $\subseteq$ BÂTIMENT[Id\_Bat]
 
     \section*{Étape 3: Fusion}
 
@@ -182,7 +182,7 @@
 
 	ACTIVITÉ[Num\_DA] $\subseteq$ DISC.ART.[Num\_DA] \\
 
-	HABITANT[Id\_Bât\_Im] $\subseteq$ BâtIMENT[Id\_Bât\_Im] \\
+	HABITANT[Id\_Bât\_Im] $\subseteq$ BÂTIMENT[Id\_Bât\_Im] \\
 
 	HABITANT[Num\_AP] $\subseteq$ APPART[Num\_AP] \\
 
@@ -208,10 +208,10 @@
 
 	\textbf{Justifications: }
 	\begin{itemize}
-		\item	On fusionne les entités ATELIER avec les associations R\_THÈME, R\_ANIME et R\_A\_LIEU car la cardinalité minimum de l'entité ATELIER pour ces associations est 1. On ajoute les attributs nécessaires (les clés de ACTIVITÉ, HABITANT, HORAIRES et SALLE).
+		\item On fusionne les entités ATELIER avec les associations R\_THÈME, R\_ANIME et R\_À\_LIEU car la cardinalité minimum de l'entité ATELIER pour ces associations est 1. On ajoute les attributs nécessaires (les clés de ACTIVITÉ, HABITANT, HORAIRES et SALLE).
 		\item	On fusionne l'entité ACTIVITÉ avec l'association R\_DISCIPLINE car la cardinalité minimum de l'entité ATELIER pour cette association est 1. On ajoute les attributs nécessaires (les clés de DISC.\_ ART.).
 		\item	On fusionne l'entité HABITANT avec l'association R\_HABITE car la cardinalité minimum de l'entité HABITANT pour cette association est 1. On ajoute les attributs nécessaires (les clés de APPART).
-		\item On fusionne les IS\_A, c'est-à-dire LOCAL et BÂTIMENT deviennent LOCAL avec les attributs de bâtiment et de local. IMMEUBLE et BÂTIMENT avec les attributs de bâtiment et de immeuble.
+		\item On fusionne les IS\_A, c'est-à-dire LOCAL et BÂTIMENT deviennent LOCAL avec les attributs de BÂTIMENT et de LOCAL\@. IMMEUBLE et BÂTIMENT avec les attributs de BÂTIMENT et de immeuble.
 		\item	On fusionne l'entité SALLE avec l'association R\_DANS\_LOCAL car la cardinalité minimum de l'entité SALLE pour cette association est 1. On ajoute les attributs nécessaires (les clés de LOCAL et donc de BÂTIMENT car c'est une entité faible). 
 		\item	On fusionne l'entité APPART avec l'association R\_DANS\_2 car la cardinalité minimum de l'entité APPART pour cette association est 1. On ajoute les attributs nécessaires (les clés de IMMEUBLE et donc de BÂTIMENT car c'est une entité faible).
 		\item Les associations R\_PARTICIPE, R\_LIEU\_POSSIBLE et R\_PARRAINE ne changent pas car les cardinalités minimales sont 0, pour les entitées associées.
@@ -228,7 +228,7 @@
 			\> Créneau DATETIME NOT NULL REFERENCES Horaire(Créneau) ,\\
 			\> Étage INTEGER NOT NULL REFERENCES Salle(Étage) ,\\
 			\> Num$\_$S INTEGER NOT NULL REFERENCES Salle(Num$\_$S),\\
-			\> Id$\_$Bat$\_$Local INTEGER NOT NULL REFERENCES Local(Id$\_$Bat$\_$Local),\\
+			\> Id$\_$Bât$\_$Local INTEGER NOT NULL REFERENCES Local(Id$\_$Bât$\_$Local),\\
 			\> N$\_$SS$\_$Anime  INTEGER NOT NULL REFERENCES Habitant(N$\_$SS),\\
 			\> Niveau INTEGER ,\\
 			\> Min INTEGER,\\
