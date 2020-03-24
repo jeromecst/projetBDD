@@ -1,0 +1,193 @@
+\documentclass[a4paper,10.5pt]{report}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{empheq}
+\usepackage{mathtools, bm}
+\usepackage{amssymb, bm}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{hyperref}
+
+\usepackage{multicol}
+\setlength{\columnsep}{2cm}
+
+\title{\textbf{\Huge  Université Paris Sud}\\ Base de donnée, partie II}
+\author{Coquisart Jérôme, Alcántara Hernández Úrsula}
+\date{Année 2020}
+
+
+\begin{document}
+    \maketitle
+    \newpage
+    %\tableofcontents
+    \newpage
+
+    \section*{Introduction}
+    \section{Étape 3: Fusion}
+
+	ATERLIER (\underline{Num\_At}, Id\_Act NOT NULL, Jour NOT NULL, Créneau NOT NULL, Étage NOT NULL, Num\_S NOT NULL, Id\_Bat\_Local NOT NULL, N\_SS\_Anime NOT NULL, Niveau, Min, Max) \\
+
+	ACTIVITÉ (\underline{Id\_Act}, Num\_dA NOT NULL, Nom\_Act, Pratique) \\
+
+	HABITANT (\underline{N\_SS, }, Id\_Bat\_Im NOT NULL, Num\_AP NOT NULL, Prén\_Hab, Nom\_Hab, Genre, Date\_Nat)  \\
+
+	SALLE (\underline{Étage}, \underline{Num\_S}, \underline{Id\_Bat\_Local}) \\
+
+	APPART (\underline{Num\_AP}, \underline{Num\_S}, \underline{Id\_Bat\_Im}) \\
+
+	LOCAL (\underline{Id\_Bat\_Local}, Nom\_Bat, Num\_Rue, Rue, CP, Type) \\
+
+	IMMEUBLE (\underline{Id\_Bat\_Im}, Nom\_Bat, Nom\_Rue, Rue, CP, Année) \\
+
+	HORAIRE (\underline{Jour}, \underline{Créneau}) \\
+
+	DISC.ART\. (\underline{Num\_DA}, Nom\_DA) \\
+
+	R\_PARTICIPE (\underline{N\_SS}, Num\_AT NOT NULL) \\
+
+	R\_PARRAINE (\underline{N\_SS\_PARRAIN}, N\_SS\_Filleul NOT NULL) \\
+
+	R\_LIEU\_POSSIBLE (\underline{Capacité}, Num\_DA NOT NULL, Étage NOT NULL, Num\_S NOT NULL, Id\_Bat\_Local NOT NULL) \\
+
+	ATELIER[Id\_Act] $\subseteq$ ACTIVITÉ[Id\_Act] \\
+
+	ATELIER[Jour] $\subseteq$ HORAIRE[Jour] \\
+
+	ATELIER[Creneau] $\subseteq$ HORAIRE[Creneau] \\
+
+	ATELIER[Etage] $\subseteq$ SALLE[Etage] \\
+
+	ATELIER[NumS] $\subseteq$ SALLE[NumS] \\
+
+	ATELIER[Id\_Bat\_Local] $\subseteq$ SALLE[Id\_Bat\_Local] \\
+
+	ATELIER[NSS\_Anime] $\subseteq$ HABITANT[NSS] \\
+
+	ACTIVITÉ[Num\_DA] $\subseteq$ DISC.ART.[Num\_DA] \\
+
+	HABITANT[Id\_Bat\_Im] $\subseteq$ BATIMENT[Id\_Bat\_Im] \\
+
+	HABITANT[Num\_AP] $\subseteq$ APPART[Num\_AP] \\
+
+	SALLE[Id\_Bât\_Local] $\subseteq$ LOCAL[Id\_Bât\_Local] \\
+
+	APPART[Id\_Bât\_Im] $\subseteq$ IMMEUBLE[Id\_Bât\_Im] \\
+
+	R\_PARTICIPE[N\_SS]  $\subseteq$ HABITANT[N\_SS] \\
+
+	R\_PARTICIPE[Num\_AT] $\subseteq$ ATELIER[Num\_AT] \\
+
+	R\_PARRAINE[N\_SS\_Filleul] $\subseteq$ HABITANT[N\_SS] \\
+
+	R\_PARRAINE[N\_SS\_Parrain] $\subseteq$ HABITANT[N\_SS] \\
+
+	R\_LIEU\_POSSIBLE[Num\_DA] $\subseteq$ DISC.ART.[Num\_DA] \\
+
+	R\_LIEU\_POSSIBLE[Etage] $\subseteq$ SALLE[Etage] \\
+
+	R\_LIEU\_POSSIBLE[Num\_S] $\subseteq$ SALLE[Num\_S] \\
+
+	R\_LIEU\_POSSIBLE[Id\_Bat\_Local] $\subseteq$ LOCAL[Id\_Bat\_Local] \\
+
+	\newpage
+    \section{EN SQL}
+
+		\begin{tabbing}
+			CR\=EATE TABLE Atelier (\\
+			\> Num$\_$AT INTEGER PRIMARY KEY,\\
+			\> Id$\_$Act INTEGER NOT NULL,\\
+			\> Jour DATE NOT NULL,\\
+			\> Créneau DATETIME NOT NULL,\\
+			\> Étage INTEGER NOT NULL,\\
+			\> Num$\_$S INTEGER NOT NULL,\\
+			\> Id$\_$Bât$\_$Local INTEGER NOT NULL,\\
+			\> N$\_$SS$\_$Anime  INTEGER NOT NULL,\\
+			\> Niveau INTEGER,\\
+			\> Min INTEGER,\\
+			\> Max INTEGER\\);
+		\end{tabbing}
+
+		\begin{tabbing}
+			CR\=EATE TABLE Activité (\\
+			\> Id\_Act INTEGER PRIMARY KEY,\\
+			\> Num\_DA INTEGER NO NULL,\\
+			\> Nom\_Act CHAR(30),\\
+			\> Pratique CHAR(10),\\);
+		\end{tabbing}
+
+		\begin{tabbing}
+			CR\=EATE TABLE Activité (\\
+			\> Id\_Bat\_Im INTEGER PRIMARY KEY,\\
+			\> Num\_AP INTEGER NOT NULL,\\
+			\> Prén\_Hab CHAR(30),\\
+			\> Nom\_Hab CHAR(30),\\
+			\> Genre CHAR(1),\\
+			\> Date\_Nat DATE,\\);
+		\end{tabbing}
+
+		\begin{tabbing}
+			CR\=EATE TABLE Salle (\\
+			\> Étage INTEGER PRIMARY KEY,\\
+			\> Num\_S INTEGER NOT NULL,\\
+			\> Id\_Bat\_Local INTEGER NOT NULL,\\);
+		\end{tabbing}
+
+		\begin{tabbing}
+			CR\=EATE TABLE Appart (\\
+			\> Num\_AP INTEGER	 PRIMARY KEY,\\
+			\> Pièces INTEGER NOT NULL,\\
+			\> Id\_Bat\_Im INTEGER NOT NULL,\\);
+		\end{tabbing}
+                                                   
+		\begin{tabbing}
+			CR\=EATE TABLE Local (\\
+			\> Id\_Bat\_Local INTEGER PRIMARY KEY,\\
+			\> Nom\_Bat CHAR(30),\\
+			\> Nom\_Rue CHAR(30),\\
+			\> Rue CHAR(40),\\
+			\> CP INTEGER,\\
+			\> Type CHAR(40),\\);
+		\end{tabbing}
+		\begin{tabbing}
+			CR\=EATE TABLE Immeuble (\\
+			\> Id\_Bat\_Im INTEGER PRIMARY KEY,\\
+			\> Nom\_Bat CHAR(30) ,\\
+			\> Nom\_Rue CHAR(30),\\
+			\> Rue CHAR(40),\\
+			\> CP INTEGER,\\
+			\> Année YEAR\\);
+		\end{tabbing}
+
+		\begin{tabbing}
+			CR\=EATE TABLE Horaire (\\
+			\> Jour DATE PRIMARY KEY,\\
+			\> Créneau DATETIME NOT NULL,\\);
+		\end{tabbing}
+		\begin{tabbing}
+			CR\=EATE TABLE Discipline\_Artistique (\\
+			\> Num\_DA INTEGER PRIMARY KEY,\\
+			\> Nom\_DA, CHAR(30)\\);
+		\end{tabbing}
+		\begin{tabbing}
+			CR\=EATE TABLE R\_Participe (\\
+			\> N\_SS INTEGER PRIMARY KEY,\\
+			\> Num\_AT INTEGER NOT NULL,\\);
+		\end{tabbing}
+		\begin{tabbing}
+			CR\=EATE TABLE R\_Parraine (\\
+			\> N\_SS\_Parrain INTEGER PRIMARY KEY,\\
+			\> N\_SS\_Filleul INTEGER NOT NULL,\\);
+		\end{tabbing}
+		\begin{tabbing}
+			CR\=EATE TABLE R\_Lieu\_Possible (\\
+			\> Capactité INTEGER PRIMARY KEY,\\
+			\> Num\_DA INTEGER NOT NULL,\\
+			\> Étage INTEGER NOT NULL,\\
+			\> Num\_S INTEGER NOT NULL,\\
+			\> Id\_Bat\_Local INTEGER NOT NULL,\\);
+		\end{tabbing}
+
+
+\end{document}
