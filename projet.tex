@@ -96,14 +96,25 @@
 		\item	On fusionne les entités ATELIER avec les associations R\_THÈME, R\_ANIME et R\_A\_LIEU car la cardinalité minimum de l'entité ATELIER pour ces associations est 1. On ajoute les attributs nécessaires (les clés de ACTIVITÉ, HABITANT, HORAIRES et SALLE).
 		\item	On fusionne l'entité ACTIVITÉ avec l'association R\_DISCIPLINE car la cardinalité minimum de l'entité ATELIER pour cette association est 1. On ajoute les attributs nécessaires (les clés de DISC.\_ ART.).
 		\item	On fusionne l'entité HABITANT avec l'association R\_HABITE car la cardinalité minimum de l'entité HABITANT pour cette association est 1. On ajoute les attributs nécessaires (les clés de APPART).
-		\item On fusionne les IS\_A, c'est-à-dire LOCAL et BÂTIMENT deviennent LOCAL avec les attributs de bâtiment et de local. IMMEUBLE et BÂTIMENT avec les attributs de bâtiment et de immeuble.
+		\item   On fusionne les IS\_A, c'est-à-dire LOCAL et BÂTIMENT deviennent LOCAL avec les attributs de bâtiment et de local. IMMEUBLE et BÂTIMENT avec les attributs de bâtiment et de immeuble.
 		\item	On fusionne l'entité SALLE avec l'association R\_DANS\_LOCAL car la cardinalité minimum de l'entité SALLE pour cette association est 1. On ajoute les attributs nécessaires (les clés de LOCAL et donc de BÂTIMENT car c'est une entité faible). 
 		\item	On fusionne l'entité APPART avec l'association R\_DANS\_2 car la cardinalité minimum de l'entité APPART pour cette association est 1. On ajoute les attributs nécessaires (les clés de IMMEUBLE et donc de BÂTIMENT car c'est une entité faible).
-		\item Les associations R\_PARTICIPE, R\_LIEU\_POSSIBLE et R\_PARRAINE ne changent pas car les cardinalités minimales sont 0, pour les entitées associées.
+		\item   Les associations R\_PARTICIPE, R\_LIEU\_POSSIBLE et R\_PARRAINE ne changent pas car les cardinalités minimales sont 0, pour les entités associées.
+		\item 
 
 	\end{itemize}
 	\newpage
-    \section{EN SQL}
+	\section{EN SQL}
+	\textbf{Justifications SQL: }
+	\begin{itemize}
+		\item On essaye de respecter l'unicité des clés primaires de chaque entité. Nonobstant, on a conservé les clés primaires composées des entités Horaire et Salle qui nous permettent de les reconnaître encore. 
+		\item On utilise des clés externes (FOREIGN KEY) pour les associations d'héritage de SALLE et APPART qui héritent de LOCAL et IMMEUBLE leur sous-entités id\_bât\_Local et id\_bât\_Im.
+		\item Lors des fusions entités/associations, on garde les clés les plus petites et qui nous permettent de reconnaître la nouvelle entité. C'est ainsi que les attributs qui étaient désignés comme des clés primaires avant fusion,
+		deviennent des NOT NULL. On garde leur propiété d'existance absolue.
+		\item On représente les contraintes d'inclusion  par des REFERENCES aux attributs des entités associées.
+		\item On choisie d'ajouter un UNIQUE pour les attributs de Local et Immeuble. Ils représentent des éléments qui peuvent jouer le rôle des clés si on les met ensemble. Un immeuble et un local sont bien reconnaissables par leur unique adresse. UNIQUE est comme une clé sécondaire mais pas nécessaire. 
+		 
+	\end{itemize}
 
 		\begin{tabbing}
 			CR\=EATE TABLE Atelier (\\
@@ -179,7 +190,7 @@
 			CR\=EATE TABLE Horaire (\\
 			\> Jour DATE,\\
 			\> Créneau DATETIME,\\
-			\> PRIMARY KEY(Jour Créneau)\\);
+			\> PRIMARY KEY(Jour, Créneau)\\);
 		\end{tabbing}
 		\begin{tabbing}
 			CR\=EATE TABLE Discipline\_Artistique (\\
@@ -188,13 +199,15 @@
 		\end{tabbing}
 		\begin{tabbing}
 			CR\=EATE TABLE R\_Participe (\\
-			\> FOREIGN KEY N\_SS INTEGER REFERENCES Habitant(N\_SS),\\
-			\> Num\_AT INTEGER NOT NULL REFERENCES Atelier(Num\_AT)\\);
+			\> N\_SS\_Participant INTEGER PRIMARY KEY,\\			
+			\> Num\_AT INTEGER NOT NULL REFERENCES Atelier(Num\_AT),\\
+			\> FOREIGN KEY N\_SS\_Participant REFERENCES Habitant(N\_SS)\\);
 		\end{tabbing}
 		\begin{tabbing}
 			CR\=EATE TABLE R\_Parraine (\\
-			\> FOREIGN KEY N\_SS\_Parrain INTEGER REFERENCES Habitant(N\_SS),\\
-			\> N\_SS\_Filleul INTEGER NOT NULL REFERENCES Habitant(N\_SS)\\);
+			\> N\_SS\_Parrain INTEGER PRIMARY KEY, \\
+			\> N\_SS\_Filleul INTEGER NOT NULL REFERENCES Habitant(N\_SS),\\
+			\> FOREIGN KEY N\_SS\_Parrain REFERENCES Habitant(N\_SS),\\);
 		\end{tabbing}
 		\begin{tabbing}
 			CR\=EATE TABLE R\_Lieu\_Possible (\\
