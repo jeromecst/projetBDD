@@ -26,6 +26,8 @@
 
     \section*{Étape 1 et 2: Traductions des entitées et des associations}
 
+	\textbf{Entités:}
+	
 	ATELIER (\underline{Num\_AT}, Niveau, Min, Max)
 
 	HORAIRE (\underline{Jour}, \underline{Créneau})
@@ -44,8 +46,11 @@
 
 	APPART (\underline{Id\_Bât}, Num\_AP, Pièces)
 
-	SALLE (\underine{Id\_Bât}, \underline{Étage}, \underline{Num\_S})
+	SALLE (\underline{Id\_Bât}, \underline{Étage}, \underline{Num\_S})
+	
 
+	\textbf{Associations:}
+	
 	R\_THÈME (\underline{Num\_AT}, Id\_Act)
 
 	R\_ANIME (\underline{Num\_AT}, N\_SS)
@@ -70,6 +75,9 @@
 	\line(1,0){250}
 	\end{center}
 
+	\textbf{Dépendances d'inclusion:}
+
+	
 	R\_THÈME[Num\_AT] $\subseteq$ ATELIER[Num\_AT]
 
 	R\_THÈME[Id\_Act] $\subseteq$ ACTIVITÉ[Id\_Act]
@@ -121,6 +129,7 @@
 	R\_À\_LIEU[Jour] $\subseteq$ HORAIRE[Jour]
 
 	R\_À\_LIEU[Créneau] $\subseteq$ HORAIRE[Créneau]
+	\\
 
 	ATELIER[Num\_AT] $\subseteq$ R\_THEME[Num\_AT]
 
@@ -216,9 +225,10 @@
 		\item	On fusionne l'entité SALLE avec l'association R\_DANS\_LOCAL car la cardinalité minimum de l'entité SALLE pour cette association est 1. On ajoute les attributs nécessaires (les clés de LOCAL et donc de BÂTIMENT car c'est une entité faible). 
 		\item	On fusionne l'entité APPART avec l'association R\_DANS\_2 car la cardinalité minimum de l'entité APPART pour cette association est 1. On ajoute les attributs nécessaires (les clés de IMMEUBLE et donc de BÂTIMENT car c'est une entité faible).
 		\item   Les associations R\_PARTICIPE, R\_LIEU\_POSSIBLE et R\_PARRAINE ne changent pas car les cardinalités minimales sont 0, pour les entités associées.
-		\item 
+		
 
 	\end{itemize}
+	
 	\newpage
 	\section{EN SQL}
 	\textbf{Justifications SQL: }
@@ -229,9 +239,9 @@
 		deviennent des NOT NULL. On garde leur propiété d'existance absolue.
 		\item On représente les contraintes d'inclusion  par des REFERENCES aux attributs des entités associées.
 		\item On choisie d'ajouter un UNIQUE pour les attributs de Local et Immeuble. Ils représentent des éléments qui peuvent jouer le rôle des clés si on les met ensemble. Un immeuble et un local sont bien reconnaissables par leur unique adresse. UNIQUE est comme une clé sécondaire mais pas nécessaire. 
-		 
+		 \\\\
 	\end{itemize}
-
+	\textbf{SQL: }
 		\begin{tabbing}
 			CR\=EATE TABLE Atelier (\\
 			\> Num$\_$AT INTEGER PRIMARY KEY,\\
