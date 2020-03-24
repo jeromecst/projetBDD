@@ -159,9 +159,9 @@
 
 	\textbf{Justifications: }
 	\begin{itemize}
-		\item Chaque entité du schéma E/A est transformé en un nouveau schéma de relation, avec les mêmes attributs. 
-		\item Chaque association du schéma E/A est transformé en un nouveau schéma de relation, avec ses propres attributs. En plus, on rajoute la/les clé(s) des entités associées au à l'association en tant qu'attribut NOT NULL, car l'association n'existe pas sans ses entités.
-		\item Pour les entités SALLE et APPART, on ajoute l'attribut Id\_Bât dans leurs schéma respectifs car ce sont des entités faibles. Idem pour LOCAL et IMMEUBLE qui prennent la clé de BÂTIMENT, car ce sont des IS\_A.
+		\item Chaque entité du schéma E/A est transformée en un nouveau schéma de relation, avec les mêmes attributs. 
+		\item Chaque association du schéma E/A est transformée en un nouveau schéma de relation, avec ses propres attributs. En plus, on rajoute la/les clé(s) des entités associées à l'association en tant qu'attribut NOT NULL, car l'association n'existe pas sans ses entités.
+		\item Pour les entités SALLE et APPART, on ajoute l'attribut Id\_Bât dans leurs schémas respectifs car ce sont des entités faibles. Idem pour LOCAL et IMMEUBLE qui prennent la clé de BÂTIMENT, car ce sont des IS\_A.
 		\item Pour les dépendances d'inclusion, on fait en sorte que les attributs qui se trouvent dans une entité fille soient inclus dans la clé de l'entité mère.
 	\end{itemize}
 
@@ -237,13 +237,13 @@
 
 	\textbf{Justifications: }
 	\begin{itemize}
-		\item On fusionne les entités ATELIER avec les associations R\_THÈME, R\_ANIME et R\_À\_LIEU car la cardinalité minimum de l'entité ATELIER pour ces associations est 1. On ajoute les attributs nécessaires (les clés de ACTIVITÉ, HABITANT, HORAIRES et SALLE).
-		\item On fusionne l'entité ACTIVITÉ avec l'association R\_DISCIPLINE car la cardinalité minimum de l'entité ATELIER pour cette association est 1. On ajoute les attributs nécessaires (les clés de DISC.\_ ART.).
-		\item On fusionne l'entité HABITANT avec l'association R\_HABITE car la cardinalité minimum de l'entité HABITANT pour cette association est 1. On ajoute les attributs nécessaires (les clés de APPART).
+		\item On fusionne les entités ATELIER avec les associations R\_THÈME, R\_ANIME et R\_À\_LIEU car la cardinalité minimale de l'entité ATELIER pour ces associations est 1. On ajoute les attributs nécessaires (les clés de ACTIVITÉ, HABITANT, HORAIRES et SALLE).
+		\item On fusionne l'entité ACTIVITÉ avec l'association R\_DISCIPLINE car la cardinalité minimale de l'entité ATELIER pour cette association est 1. On ajoute les attributs nécessaires (les clés de DISC.\_ ART.).
+		\item On fusionne l'entité HABITANT avec l'association R\_HABITE car la cardinalité minimale de l'entité HABITANT pour cette association est 1. On ajoute les attributs nécessaires (les clés de APPART).
 		\item On fusionne les IS\_A, c'est-à-dire LOCAL et BÂTIMENT deviennent LOCAL avec les attributs de BÂTIMENT et de LOCAL\@. IMMEUBLE et BÂTIMENT avec les attributs de BÂTIMENT et de immeuble.	
 
-		\item On fusionne l'entité SALLE avec l'association R\_DANS\_LOCAL car la cardinalité minimum de l'entité SALLE pour cette association est 1. On ajoute les attributs nécessaires (les clés de LOCAL et donc de BÂTIMENT car c'est une entité faible). 
-		\item On fusionne l'entité APPART avec l'association R\_DANS\_2 car la cardinalité minimum de l'entité APPART pour cette association est 1. On ajoute les attributs nécessaires (les clés de IMMEUBLE et donc de BÂTIMENT car c'est une entité faible).
+		\item On fusionne l'entité SALLE avec l'association R\_DANS\_LOCAL car la cardinalité minimale de l'entité SALLE pour cette association est 1. On ajoute les attributs nécessaires (les clés de LOCAL et donc de BÂTIMENT car c'est une entité faible). 
+		\item On fusionne l'entité APPART avec l'association R\_DANS\_2 car la cardinalité minimale de l'entité APPART pour cette association est 1. On ajoute les attributs nécessaires (les clés de IMMEUBLE et donc de BÂTIMENT car c'est une entité faible).
 		\item Les associations R\_PARTICIPE, R\_LIEU\_POSSIBLE et R\_PARRAINE ne changent pas car les cardinalités minimales sont 0, pour les entités associées.
 
 	\end{itemize}
