@@ -93,12 +93,12 @@
 
 	\textbf{Justifications: }
 	\begin{itemize}
-		\item	On fusionne les entités ATELIER avec les associations R\_THÈME, R\_ANIME et R\_A\_LIEU car la cardinalité minimum de l'entité ATELIER pour ces associations est 1. On ajoute les attributs nécessaires (les clés de ACTIVITÉ, HABITANT, HORAIRES et SALLE).
-		\item	On fusionne l'entité ACTIVITÉ avec les associations R\_DISCIPLINE car la cardinalité minimum de l'entité ATELIER pour cette association est 1. On ajoute les attributs nécessaires (les clés de DISC.\_ ART.).
-		\item	On fusionne l'entité HABITANT avec les associations R\_HABITE car la cardinalité minimum de l'entité HABITANT pour cette association est 1. On ajoute les attributs nécessaires (les clés de APPART).
+		\item	On fusionne les entités ATELIER avec l'association R\_THÈME, R\_ANIME et R\_A\_LIEU car la cardinalité minimum de l'entité ATELIER pour ces associations est 1. On ajoute les attributs nécessaires (les clés de ACTIVITÉ, HABITANT, HORAIRES et SALLE).
+		\item	On fusionne l'entité ACTIVITÉ avec l'association R\_DISCIPLINE car la cardinalité minimum de l'entité ATELIER pour cette association est 1. On ajoute les attributs nécessaires (les clés de DISC.\_ ART.).
+		\item	On fusionne l'entité HABITANT avec l'association R\_HABITE car la cardinalité minimum de l'entité HABITANT pour cette association est 1. On ajoute les attributs nécessaires (les clés de APPART).
 		\item On fusionne les IS\_A, c'est-à-dire LOCAL et BÂTIMENT deviennent LOCAL avec les attributs de bâtiment et de local. IMMEUBLE et BÂTIMENT avec les attributs de bâtiment et de immeuble.
-		\item	On fusionne l'entité SALLE avec les associations R\_DANS\_LOCAL car la cardinalité minimum de l'entité SALLE pour cette association est 1. On ajoute les attributs nécessaires (les clés de LOCAL et donc de BÂTIMENT car c'est une entité faible). 
-		\item	On fusionne l'entité APPART avec les associations R\_DANS\_2 car la cardinalité minimum de l'entité APPART pour cette association est 1. On ajoute les attributs nécessaires (les clés de IMMEUBLE et donc de BÂTIMENT car c'est une entité faible).
+		\item	On fusionne l'entité SALLE avec l'association R\_DANS\_LOCAL car la cardinalité minimum de l'entité SALLE pour cette association est 1. On ajoute les attributs nécessaires (les clés de LOCAL et donc de BÂTIMENT car c'est une entité faible). 
+		\item	On fusionne l'entité APPART avec l'association R\_DANS\_2 car la cardinalité minimum de l'entité APPART pour cette association est 1. On ajoute les attributs nécessaires (les clés de IMMEUBLE et donc de BÂTIMENT car c'est une entité faible).
 		\item Les associations R\_PARTICIPE, R\_LIEU\_POSSIBLE et R\_PARRAINE ne changent pas car les cardinalités minimales sont 0, pour les entitées associées.
 
 	\end{itemize}
@@ -109,15 +109,15 @@
 			CR\=EATE TABLE Atelier (\\
 			\> Num$\_$AT INTEGER PRIMARY KEY,\\
 			\> Id$\_$Act INTEGER NOT NULL REFERENCES Activité(Id\_Act),\\
-            \> Jour DATE NOT NULL REFERENCES Horaire(Jour) ,\\
-            \> Créneau DATETIME NOT NULL REFERENCES Horaire(Créneau) ,\\
-            \> Étage INTEGER NOT NULL REFERENCES Salle(Étage) ,\\
+			\> Jour DATE NOT NULL REFERENCES Horaire(Jour) ,\\
+			\> Créneau DATETIME NOT NULL REFERENCES Horaire(Créneau) ,\\
+			\> Étage INTEGER NOT NULL REFERENCES Salle(Étage) ,\\
 			\> Num$\_$S INTEGER NOT NULL REFERENCES Salle(Num$\_$S),\\
 			\> Id$\_$Bat$\_$Local INTEGER NOT NULL REFERENCES Local(Id$\_$Bat$\_$Local),\\
 			\> N$\_$SS$\_$Anime  INTEGER NOT NULL REFERENCES Habitant(N$\_$SS),\\
 			\> Niveau INTEGER ,\\
 			\> Min INTEGER,\\
-			\> Max INTEGER,\\);
+			\> Max INTEGER\\);
 		\end{tabbing}
 
 		\begin{tabbing}
@@ -125,7 +125,7 @@
 			\> Id\_Act INTEGER PRIMARY KEY,\\
 			\> Num$\_$DA INTEGER NOT NULL REFERENCES Discipline$\_$Artistique(Num$\_$DA),\\
 			\> Nom\_Act CHAR(30),\\
-			\> Pratique CHAR(10),\\);
+			\> Pratique CHAR(10)\\);
 		\end{tabbing}
 
 		\begin{tabbing}
@@ -136,7 +136,7 @@
 			\> Prén\_Hab CHAR(30),\\
 			\> Nom\_Hab CHAR(30),\\
 			\> Genre CHAR(1),\\
-			\> Date\_Nat DATE,\\);
+			\> Date\_Nat DATE\\);
 		\end{tabbing}
 
 		\begin{tabbing}
@@ -144,14 +144,14 @@
 			\> Étage INTEGER,\\
 			\> Num\_S INTEGER,\\
 			\> Id\_Bât\_Local INTEGER NOT NULL REFERENCES Local(Id\_Bât\_Local),\\
-			\> PRIMARY KEY(Étage, Num\_S),\\);
+			\> PRIMARY KEY(Étage, Num\_S)\\);
 		\end{tabbing}
 
 		\begin{tabbing}
 			CR\=EATE TABLE Appart (\\
 			\> Num\_AP INTEGER PRIMARY KEY,\\
 			\> Pièces INTEGER NOT NULL,\\
-			\> Id\_Bât\_Im INTEGER NOT NULL REFERENCES Immeuble(Id\_Bât\_Im),\\);
+			\> Id\_Bât\_Im INTEGER NOT NULL REFERENCES Immeuble(Id\_Bât\_Im)\\);
 		\end{tabbing}
                                                    
 		\begin{tabbing}
@@ -162,7 +162,7 @@
 			\> Rue INTEGER,\\
 			\> CP INTEGER,\\
 			\> Type CHAR(40),\\
-			\> UNIQUE(Nom\_Bât, Nom\_Rue, Rue, CP),\\);
+			\> UNIQUE(Nom\_Bât, Nom\_Rue, Rue, CP)\\);
 		\end{tabbing}
 		\begin{tabbing}
 			CR\=EATE TABLE Immeuble (\\
@@ -172,29 +172,29 @@
 			\> Rue INTEGER,\\
 			\> CP INTEGER,\\
 			\> Année YEAR,\\
-			\> UNIQUE(Nom\_Bât, Nom\_Rue, Rue, CP),\\);
+			\> UNIQUE(Nom\_Bât, Nom\_Rue, Rue, CP)\\);
 		\end{tabbing}
 
 		\begin{tabbing}
 			CR\=EATE TABLE Horaire (\\
 			\> Jour DATE,\\
 			\> Créneau DATETIME,\\
-			\> PRIMARY KEY(Jour Créneau),\\);
+			\> PRIMARY KEY(Jour Créneau)\\);
 		\end{tabbing}
 		\begin{tabbing}
 			CR\=EATE TABLE Discipline\_Artistique (\\
 			\> Num\_DA INTEGER PRIMARY KEY,\\
-			\> Nom\_DA CHAR(30),\\);
+			\> Nom\_DA CHAR(30)\\);
 		\end{tabbing}
 		\begin{tabbing}
 			CR\=EATE TABLE R\_Participe (\\
 			\> FOREIGN KEY N\_SS INTEGER REFERENCES Habitant(N\_SS),\\
-			\> Num\_AT INTEGER NOT NULL REFERENCES Atelier(Num\_AT),\\);
+			\> Num\_AT INTEGER NOT NULL REFERENCES Atelier(Num\_AT)\\);
 		\end{tabbing}
 		\begin{tabbing}
 			CR\=EATE TABLE R\_Parraine (\\
 			\> FOREIGN KEY N\_SS\_Parrain INTEGER REFERENCES Habitant(N\_SS),\\
-			\> N\_SS\_Filleul INTEGER NOT NULL REFERENCES Habitant(N\_SS),\\);
+			\> N\_SS\_Filleul INTEGER NOT NULL REFERENCES Habitant(N\_SS)\\);
 		\end{tabbing}
 		\begin{tabbing}
 			CR\=EATE TABLE R\_Lieu\_Possible (\\
@@ -202,7 +202,7 @@
 			\> Num\_DA INTEGER NOT NULL REFERENCES Discipline\_Artistique(Num\_DA),\\
 			\> Étage INTEGER NOT NULL REFERENCES Salle(Étage),\\
 			\> Num\_S INTEGER NOT NULL REFERENCES Salle(Num\_S),\\
-			\> Id\_Bât\_Local INTEGER NOT NULL REFERENCES Local(Id\_Bât\_Local),\\);
+			\> Id\_Bât\_Local INTEGER NOT NULL REFERENCES Local(Id\_Bât\_Local)\\);
 		\end{tabbing}
 
 
